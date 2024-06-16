@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.5)
 # project name
 # set(CMAKE_C_COMPILER "C:/Files/w64devkit/bin/gcc.exe")
-set(CMAKE_CXX_COMPILER "C:/Files/mingw/bin/g++.exe")
+set(CMAKE_CXX_COMPILER "D:/mingw/bin/g++.exe")
 project(Webserver)
 
 # 定义变量
