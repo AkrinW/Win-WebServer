@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 # project name
 # set(CMAKE_C_COMPILER "C:/Files/w64devkit/bin/gcc.exe")
 set(CMAKE_CXX_COMPILER "C:/Files/mingw/bin/g++.exe")
-project(CPPproject)
+project(Webserver)
 
 # 定义变量
 SET(MAIN main.cpp)
@@ -15,12 +15,42 @@ SET(Home "D:/study/Win-WebServer")
 SET(EXECUTABLE_OUTPUT_PATH ${Home})
 # 包含头文件
 include_directories("${PROJECT_SOURCE_DIR}/include")
-# 搜索当前目录的src目录下所有的源文件，并存储到变量中
-# file(GLOB MAIN_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-# file(GLOB MAIN_HEAD "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 
 # 搜索路径另一种方式
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(main ${MAIN} ${SRC_LIST})
+
+# 链接库
+target_link_libraries(main ws2_32)
+
+
+
+# cmake_minimum_required(VERSION 3.5)
+
+# # Project name
+# project(Webserver)
+
+# # Specify the C++ compiler
+# set(CMAKE_CXX_COMPILER "C:/Files/mingw/bin/g++.exe")
+
+# # Specify C++ standard
+# set(CMAKE_CXX_STANDARD 17)
+
+# # Specify output path
+# set(Home "D:/study/Win-WebServer")
+# set(EXECUTABLE_OUTPUT_PATH ${Home})
+
+# # Include directories
+# include_directories("${PROJECT_SOURCE_DIR}/include")
+
+# # Search for source files
+# set(SRC_LIST main.cpp)
+# aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
+
+# # Define the executable
+# add_executable(Webserver ${SRC_LIST})
+
+# # Link libraries
+# target_link_libraries(Webserver ws2_32)
