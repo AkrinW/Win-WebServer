@@ -6,3 +6,5 @@ A webserver built by c++ in win, using winsock API
 同样也作为Windows和Linux系统性能的对比。
 
 参考在Linux系统实现的TinyWebServer系统，学习其框架架构。
+
+库函数参数为char*, 使用string会读取错误。

@@ -22,8 +22,8 @@ int main() {
     sockaddr_in serverAddr;
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(32140);
-    std::string IPv4 = "10.181.71.241";
-    if (inet_pton(AF_INET, &IPv4[0], &(serverAddr.sin_addr)) <= 0) {
+    const char* IPv4 = "10.181.71.241";
+    if (inet_pton(AF_INET, IPv4, &(serverAddr.sin_addr)) <= 0) {
         std::cerr << "无效服务器地址\n";
         closesocket(clientSocket);
         WSACleanup();
@@ -46,7 +46,7 @@ int main() {
         if (message == "quit") {
             break;
         }
-        if (send(clientSocket, &message[0], message.size(), 0)
+        if (send(clientSocket, message.c_str(), message.size(), 0)
         == SOCKET_ERROR) {
             std::cerr << "Failed to send data\n";
             closesocket(clientSocket);
@@ -54,8 +54,8 @@ int main() {
             return 1;
         }
 
-        std::string revBuffer = "";
-        if (recv(clientSocket, &revBuffer[0], sizeof(revBuffer), 0)
+        char revBuffer[1024];
+        if (recv(clientSocket, revBuffer, sizeof(revBuffer), 0)
         == SOCKET_ERROR) {
             std::cerr << "Failed to receive data\n";
             closesocket(clientSocket);
