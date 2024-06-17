@@ -7,6 +7,9 @@ project(Webserver)
 
 # 定义变量
 SET(MAIN main.cpp)
+SET(CLIENT client.cpp)
+SET(SERVER server.cpp)
+
 
 # 指定cpp版本
 SET(CMAKE_CXX_STANDARD 17)
@@ -21,11 +24,12 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(main ${MAIN} ${SRC_LIST})
-
+add_executable(server ${SERVER})
+add_executable(client ${CLIENT})
 # 链接库
 target_link_libraries(main ws2_32)
-
-
+target_link_libraries(server ws2_32)
+target_link_libraries(client ws2_32)
 
 # cmake_minimum_required(VERSION 3.5)
 

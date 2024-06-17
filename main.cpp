@@ -9,7 +9,7 @@ int main() {
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
         return 1;
     }
-
+    std::cout << "wsadata\n";
     //创建套接字socket
     SOCKET listenSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (listenSocket == INVALID_SOCKET) {
@@ -17,7 +17,7 @@ int main() {
         WSACleanup();
         return 1;
     }
-
+    std::cout << "lisensocket\n";
     // 绑定套接字
     sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
@@ -30,7 +30,7 @@ int main() {
         WSACleanup();
         return 1;
     }
-
+    std::cout << "bindsocket\n";
     // 设置监听状态
     if (listen(listenSocket, 5) == SOCKET_ERROR) {
         std::cerr << "Failed to listen socket\n";
@@ -38,7 +38,7 @@ int main() {
         WSACleanup();
         return 1;
     }
-
+    std::cout << "listensocket\n";
     // 等待接收
     SOCKET clientSocket = accept(listenSocket, nullptr, nullptr);
     if (clientSocket == INVALID_SOCKET) {
@@ -49,6 +49,7 @@ int main() {
     }
     // clientsocket位于服务器端，用于与对应客户端通信
     // 服务端的serversocket本身并不处理请求，而是额外创建socket处理
+    std::cout << "acceptsocket\n";
 
     // 接收数据
     std::string buffer;
@@ -61,9 +62,11 @@ int main() {
         return 1;
     }
     buffer = '\0';
-    
+    std::cout << "recvsocket\n";
+
     // 发送数据
     std::string message = "Hello client\n";
+    std::cout << message;
     if (send(clientSocket, &message[0], message.size(), 0)
     == SOCKET_ERROR) {
         std::cerr << "Failed to send data\n";
@@ -72,6 +75,7 @@ int main() {
         WSACleanup();
         return 1;
     }
+    std::cout << "sendsocket\n";
 
     // 连接服务器（客户端函数）
     SOCKET sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -92,6 +96,7 @@ int main() {
         WSACleanup();
         return 1;
     }
+    std::cout << "connectserver\n";
 
     // 关闭套接字
     closesocket(clientSocket);
