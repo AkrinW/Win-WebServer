@@ -3,18 +3,19 @@
 
 #include "winsock2.h"
 #include "ws2tcpip.h"
-#include <iostream>
-#include <string>
-#include <vector>
 
 namespace WEBSERVER{
 
-class BaceSocket {
+enum ErrorID;
+
+class BaseSocket {
 private:
     WSADATA wsaData;
+    ErrorID _error;
+    void ThrowError(ErrorID _error);
 public:
-    BaceSocket();
-    ~BaceSocket();
+    BaseSocket();
+    ~BaseSocket();
 };
 
 };
