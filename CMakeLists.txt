@@ -23,11 +23,11 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_LIST)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-add_executable(main ${MAIN} ${SRC_LIST})
-add_executable(server ${SERVER})
-add_executable(client ${CLIENT})
+# add_executable(main ${MAIN} ${SRC_LIST})
+add_executable(server ${SERVER} ${SRC_LIST})
+add_executable(client ${CLIENT} ${SRC_LIST})
 # 链接库
-target_link_libraries(main ws2_32)
+# target_link_libraries(main ws2_32)
 target_link_libraries(server ws2_32)
 target_link_libraries(client ws2_32)
 
