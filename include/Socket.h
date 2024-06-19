@@ -6,7 +6,10 @@
 
 namespace WEBSERVER{
 
-enum ErrorID;
+enum ErrorID {
+    NoError, Error_InitWSA, Error_CreatSocket, Error_InvalidAddr, Error_BindSocket, 
+    Error_ListenSocket, Error_AcceptSocket, Error_ReceiveData, Error_SendData
+};
 
 class BaseSocket {
 private:

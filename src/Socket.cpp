@@ -3,11 +3,6 @@
 
 namespace WEBSERVER{
 
-enum ErrorID {
-    NoError, Error_InitWSA, Error_CreatSocket, Error_InvalidAddr, Error_BindSocket, 
-    Error_ListenSocket, Error_AcceptSocket, Error_ReceiveData, Error_SendData
-};
-
 BaseSocket::BaseSocket() {
     _error = NoError;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
